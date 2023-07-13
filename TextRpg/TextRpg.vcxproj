@@ -127,19 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Bank.cpp" />
     <ClCompile Include="City.cpp" />
-    <ClCompile Include="LandRpg.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PrintInfo.cpp" />
     <ClCompile Include="TextRpg.cpp" />
+    <ClCompile Include="Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bank.h" />
     <ClInclude Include="City.h" />
-    <ClInclude Include="LandRpg.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PrintInfo.h" />
+    <ClInclude Include="Tile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

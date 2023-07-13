@@ -22,5 +22,6 @@ public:
 	void EndActivity(std::vector<Player> player);
 	void gotoxy(int x, int y);
 	void PrintLand(int x, int y);
+
 };
 

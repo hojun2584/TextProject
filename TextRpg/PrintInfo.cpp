@@ -8,15 +8,9 @@ void PrintInfo::InitActivity()
 	
 
 	system("mode con cols=200 lines=60 | title Ã¢ Á¦¸ñ");
-	land.push_back("----------");
-	land.push_back("|        |");
-	land.push_back("|________|");
-	land.push_back("|        |");
-	land.push_back("|        |");
-	land.push_back("|        |");
-	land.push_back("|        |");
-	land.push_back("----------");
+	
 }
+
 
 void PrintInfo::IntroActivity()
 {
@@ -48,21 +42,16 @@ void PrintInfo::gotoxy(int x, int y)
 }
 
 
+
+
 void PrintInfo::PrintLand(int x, int y) {
 
-	vector<string>::iterator iter = land.begin();
-	iter = land.begin();
-	
-	
 	for(int i = 0 ; i < 8; i++)
 	{
-		
 		for(int j = 0 ; j < 10 ; j++)
 		{
 			gotoxy(x + (j * 12), y+i);
 			cout << land[i];
 		}
-		
-
 	}
 }

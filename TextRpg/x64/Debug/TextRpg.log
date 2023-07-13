@@ -1,2 +1,5 @@
-﻿  PrintInfo.cpp
-  TextRpg.vcxproj -> C:\Users\플밍\Documents\GitHub\TextProject\x64\Debug\TextRpg.exe
+﻿  City.cpp
+  PrintInfo.cpp
+  TextRpg.cpp
+  코드를 생성하고 있습니다...
+C:\Users\플밍\Documents\GitHub\TextProject\TextRpg\City.h(26): error C4716: 'City::changeState': 값을 반환해야 합니다.

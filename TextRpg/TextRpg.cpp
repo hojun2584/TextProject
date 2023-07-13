@@ -7,7 +7,11 @@ using namespace std;
 int main()
 {
 
-    PrintInfo *activityManager = new PrintInfo();
+
+    City* city = new City();
+
+
+    /*PrintInfo *activityManager = new PrintInfo();
     activityManager->InitActivity();
     activityManager->IntroActivity();
     
@@ -26,7 +30,7 @@ int main()
     {
         activityManager->LandActivity(player,citys);
         cin >> temp;
-    }
+    }*/
     
 }
 
