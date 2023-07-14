@@ -4,31 +4,32 @@
 
 using namespace std;
 
-class City : Tile
+struct CityStruct
 {
-public:
-	City();
-	City(string name, int havePlayer, int cost,string state);
+	int a;
+};
 
+class City : public Tile
+{
+
+public:
 	struct CityInfo
 	{
-		
+		TileInfo* tile;
 		int owner;
 		int cost;
-		
 	};
 
-	CityInfo *city;
+	CityInfo* townInfo;
+
+	City();
+	City(string name, string type, int cost);
 	
-	void Init(string name, string state,int owner, int cost);
 
-	void EnterPlayer();
-	string changeState();
-
+	void Init(string name, string type, int cost, int owner);
 	void SetOwner(int owner);
 	int GetOwner();
 	int bulidCost(int bulidType);
-
-
+	
 };
 
