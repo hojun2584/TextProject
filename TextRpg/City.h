@@ -4,24 +4,17 @@
 
 using namespace std;
 
-class City : Tile
+class City : public Tile
 {
 public:
-	City();
-	City(string name, int havePlayer, int cost,string state);
 
-	struct CityInfo
-	{
-		
-		int owner;
-		int cost;
-		
-	};
-
-	CityInfo *city;
+	City(LandInfo land);
+	City(int cost, int owner, string name, string type);
 	
-	void Init(string name, string state,int owner, int cost);
 
+	void Init(int cost, int owner, string name, string type);
+
+	//virtual
 	void EnterPlayer();
 	string changeState();
 

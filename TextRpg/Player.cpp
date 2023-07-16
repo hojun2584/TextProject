@@ -1,5 +1,13 @@
 #include "Player.h"
 
+Player::Player(int money, string name)
+{
+
+	playerMoney = money;
+	this->name = name;
+
+}
+
 bool Player::IsDead()
 {
 
@@ -24,8 +32,16 @@ void Player::WithdrawMoney(int withdraw)
 
 }
 
-void Player::ChangeState(string state)
+
+void Player::ChangePosition(int diceValue)
 {
 
-	this->state = state;
+	if(currentPosition + diceValue > 30)
+	{
+		currentPosition = currentPosition + diceValue - 30;
+		return;
+	}
+	currentPosition = currentPosition + diceValue;
+	
 }
+

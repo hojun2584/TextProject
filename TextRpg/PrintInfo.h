@@ -4,10 +4,11 @@
 #include <Windows.h>
 #include <iostream>
 #include <vector>
+#include <string>
 #include "Player.h"
 #include "City.h"
 
-
+using namespace std;
 
 class PrintInfo
 {
@@ -21,7 +22,8 @@ public:
 	void LandActivity(std::vector<Player> players , std::vector<City> citys);
 	void EndActivity(std::vector<Player> player);
 	void gotoxy(int x, int y);
-	void PrintLand(int x, int y);
+	void PrintLand(int x, int y,City capital);
+	void SetPrintInfo(City capital);
 
 };
 

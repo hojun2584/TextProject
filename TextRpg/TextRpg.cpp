@@ -1,36 +1,59 @@
-﻿
+﻿#include <list>
 #include <iostream>
 #include "PrintInfo.h"
+#include "LandInfo.h"
 
 using namespace std;
 
 int main()
 {
+	
+
+	list<LandInfo> landList;
+	PrintInfo printManager;
+	
+	int maxPlayers;
+	vector<Player> players;
+	vector<Player>::iterator currentPlayers = players.begin();
+	vector<City> citys;
+
+	City city = { 30,-1,"seoul","city" };
+
+	city = { 30,-1,"seoul","city" };
 
 
-    City* city = new City();
-
-
-    /*PrintInfo *activityManager = new PrintInfo();
-    activityManager->InitActivity();
-    activityManager->IntroActivity();
-    
-    int temp = NULL;
-    cin >> temp;
-    
-    vector<Player> player;
-    vector<City> citys;
-
-    Player *cus = new Player();
-    player.push_back(*cus);
+	citys.push_back(city);
 
 
 
-    while(NULL !=temp)
-    {
-        activityManager->LandActivity(player,citys);
-        cin >> temp;
-    }*/
-    
+
+	printManager.InitActivity();
+	printManager.IntroActivity();
+
+	cin >> maxPlayers;
+
+
+
+	int temp;
+
+
+
+	while(true)
+	{
+		
+		//std::vector<Player> players, std::vector<City> citys
+		printManager.LandActivity(players,citys);
+		cin >> temp;
+
+
+	}
+
+	
+
+
+
+	
+
+
 }
 
