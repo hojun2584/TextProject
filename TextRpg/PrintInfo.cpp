@@ -78,7 +78,7 @@ void PrintInfo::SetPrintInfo(City capital)
 
 
 	land.push_back("|--------|");
-	land.push_back("   " + capital.land->name);
+	land.push_back("   " + capital.land.name);
 	land.push_back("|--------|");
 	land.push_back("|  owner |");
 	
@@ -94,9 +94,9 @@ void PrintInfo::SetPrintInfo(City capital)
 	{
 		land.push_back("|        |");
 	}
-	if(capital.land->type != "start")
+	if(capital.land.type != "start")
 	{
-		land.push_back("    " + to_string(capital.land->cost));
+		land.push_back("    " + to_string(capital.land.cost));
 
 	}
 	else

@@ -21,5 +21,5 @@ string City::changeState()
 
 int City::GetOwner()
 {
-	return land->owner;
+	return land.owner;
 }

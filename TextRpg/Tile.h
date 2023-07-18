@@ -12,7 +12,7 @@ class Tile abstract
 
 public:
 
-	LandInfo* land;
+	LandInfo land;
 	vector<Player> players;
 
 	Tile();
@@ -34,9 +34,6 @@ public:
 	//player가 '지금' 들어와 상태가 변할 때
 
 	virtual string changeState() = 0;
-	
-
-
 
 };
 
