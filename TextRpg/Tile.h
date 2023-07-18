@@ -31,9 +31,7 @@ public:
 	//player '지금' (들어온) 나간 상태
 	void OutPlayer();
 	virtual void EnterPlayer() = 0;
-	//player가 '지금' 들어와 상태가 변할 때
 
-	virtual string changeState() = 0;
 
 };
 
