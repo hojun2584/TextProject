@@ -5,45 +5,26 @@ Tile::Tile()
 {
 }
 
-Tile::Tile(LandInfo land)
+Tile::Tile(int cost, string name, string type)
 {
 
-	this->land = land;
 
-}
 
-Tile::Tile(int cost, int owner, string name, string type)
-{
-
-	land = { cost,owner,name,type };
 }
 
 
 
-void Tile::Init(string name, string type)
+
+bool Tile::IsOnPlayer(Player player)
 {
-
-	land.name = name;
-	land.type = type;
-}
-
-bool Tile::OnPlayer(Player player)
-{
-
-	
 	if (players.empty())
 		return false;
 	
 	return true;
-
 }
 
 string Tile::getType()
 {
-	return land.type;
+	return string();
 }
 
-void Tile::OutPlayer()
-{
-
-}

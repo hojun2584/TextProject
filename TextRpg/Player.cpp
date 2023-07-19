@@ -1,47 +1,16 @@
 #include "Player.h"
 
-Player::Player(int money, string name)
+void Player::DepositMoney(int money)
 {
-
-	playerMoney = money;
-	this->name = name;
-
+	playerState.money += money;
 }
 
-bool Player::IsDead()
+void Player::WithdrowMoney(int money)
 {
-
-	if (playerMoney <= 0) {
-		return true;
-	}
-
-	return false;
-}
-
-void Player::DepositMoney(int deposit)
-{
-
-	playerMoney += deposit;
-
-}
-
-void Player::WithdrawMoney(int withdraw)
-{
-
-	playerMoney -= withdraw;
-
+	playerState.money -= money;
 }
 
 
-void Player::ChangePosition(int diceValue)
-{
 
-	if(currentPosition + diceValue > 30)
-	{
-		currentPosition = currentPosition + diceValue - 30;
-		return;
-	}
-	currentPosition = currentPosition + diceValue;
-	
-}
+
 

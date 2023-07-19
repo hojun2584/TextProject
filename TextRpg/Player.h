@@ -1,31 +1,34 @@
 #pragma once
-#include <string>
+#include <iostream>
 #include <vector>
+#include <string>
 
 using namespace std;
 
+
 class Player
 {
-private:
-	
 
+	struct PlayerInfo
+	{
+		vector<string> eventInfo;
+		string name;
+		int money;
+		PlayerInfo() { name = "1", money = 300; };
+		PlayerInfo(string name , int money)
+		{
+			this->name = name;
+			this->money = money;
+		};
+	};
 
 public:
-	
-	int playerMoney = 300;
-	int currentPosition = 0;
-	string name = "player";
-	string state = "normal";
-	
 
-
-	Player(int money, string name);
-
-	bool IsDead();
-	void DepositMoney(int deposit);
-	void WithdrawMoney(int withdraw);
-	void ChangePosition(int diceValue);
+	PlayerInfo playerState;
 	
+	void DepositMoney(int money);
+	void WithdrowMoney(int money);
+
 
 };
 

@@ -2,54 +2,126 @@
 
 
 
-City::City(LandInfo land) : Tile(land)
+
+City::City(int cost, string name, string type)
 {
+
+	cityState.tile = { cost, name, type };
+
 }
 
-City::City(int cost, int owner, string name, string type) : Tile(cost, owner,name, type)
+bool City::IsBuild(Player player)
 {
-
-}
-
-void City::Init()
-{
-	land.cost = cost;
-	land.owner = owner;
-	land.name = name;
-	land.type = type;
-}
-
-void City::EnterPlayer()
-{
-}
-
-
-void City::SetOwner(int owner)
-{
-	land.owner = owner;
 	
+	if(cityState.building !=3)
+	{
+		return true;
+	}
+
+	return false;
 }
 
-int City::GetOwner()
+bool City::IsOwner()
 {
-	return land.owner;
+
+	if (cityState.tile.owner == nullptr ) 
+	{
+		return false;
+	}
+
+	return true;
+}
+
+int City::BuyLand(Player player)
+{
+	cityState.tile.owner = &player;
+	cityState.building = 0;
+	return (int)(cityState.tile.cost);
+}
+
+int City::BuyBila(Player player)
+{
+	cityState.building = 1;
+	return (int)(cityState.tile.cost*0.2);
+}
+
+int City::BuyHotel(Player player)
+{
+	cityState.building = 2;
+	return (int)(cityState.tile.cost*0.4);
+}
+
+int City::BuyBuilding(Player player)
+{
+	cityState.building = 3;
+	return (int)(cityState.tile.cost*0.6);
+}
+
+int City::VisitCost()
+{
+	if(cityState.building == 1)
+	{
+		return (int)(cityState.tile.cost * 1.2);
+	}
+	else if (cityState.building == 2)
+	{
+		return (int)(cityState.tile.cost * 1.4);
+	}
+	else if (cityState.building == 3)
+	{
+		return (int)(cityState.tile.cost * 1.6);
+	}
+	else {
+
+		return 0;
+	}
 }
 
 
-//buildType == 1 villa , 2 == build , 3 == hotel;
-int City::BulidCost(int buildType)
+
+void City::VisitAnother(Player player)
 {
 
-	if(buildType == 1)
+	int money = VisitCost();
+
+	if(player.playerState.money < money )
 	{
-		return (int) land.cost * 1.4;
+		money = player.playerState.money;
+		player.playerState.money = -1;
 	}
-	else if (buildType == 2)
+
+	player.WithdrowMoney( money );
+
+	if( !IsOwner() )
 	{
-		return (int)land.cost * 1.6;
+		cityState.tile.owner->DepositMoney(money);
+	
 	}
-	else if (buildType == 3)
-	{
-		return (int)land.cost * 2.0;
-	}
+
+
+}
+
+
+Player City::AnotherPlayerBuy(Player player, int buildType)
+{
+	Player preOwner = *cityState.tile.owner;
+
+	return preOwner;
+}
+
+
+void City::EnterPlayer(Player player)
+{
+	onPlayers.push_back(player);
+}
+
+bool City::OutPlayer(Player player)
+{
+	
+	if( onPlayers.empty() )
+		
+}
+
+City::CityInfo::CityInfo()
+{
 }

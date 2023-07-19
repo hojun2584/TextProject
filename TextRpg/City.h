@@ -1,28 +1,53 @@
 #pragma once
-#include <string>
 #include "Tile.h"
+#include "Player.h"
 
-using namespace std;
-
-class City : public Tile
+class City : Tile
 {
+
+	struct CityInfo
+	{
+		// building = 1 == 별장 , 2 == 호텔, 3 == 빌딩
+		int building = -1;
+		TileInfo tile;
+		
+
+		CityInfo();
+		CityInfo(TileInfo tile) {
+			
+			this->tile = tile;
+			this->building = -1;
+		};
+		
+		
+	};
+
 public:
 
+	CityInfo cityState;
 
-	City(LandInfo land);
-	City(int cost, int owner, string name, string type);
+
+	City(int cost, string name, string type);
+
+	bool IsBuild(Player player);
+	bool IsOwner();
+
+	int BuyLand(Player player);
+	int BuyBila(Player player);
+	int BuyHotel(Player player);
+	int BuyBuilding(Player player);
+
+	int VisitCost();
+
+	void VisitAnother(Player player);
+	Player AnotherPlayerBuy(Player player,int buildType);
 	
 
-	void Init();
-
-	//virtual
-	void EnterPlayer();
 
 
-	void SetOwner(int owner);
-	int GetOwner();
-	int BulidCost(int bulidType);
 
+	void EnterPlayer(Player player) override;
+	bool OutPlayer(Player player);
 
 };
 
