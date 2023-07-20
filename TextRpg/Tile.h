@@ -5,9 +5,8 @@
 
 using namespace std;
 
-class Tile abstract
+class Tile
 {
-
 
 public:
 
@@ -34,21 +33,34 @@ public:
 		};
 
 	};
+
 	
 	vector<Player> onPlayers;
+	TileInfo tileInfo;
 
 	Tile();
 	Tile(int cost, string name, string type);
 
 
+
+	int GetCost();
+	string GetName();
+	string GetType();
+	Player* GetOwner();
+
+	void SetCost(int cost);
+	void SetName(string name);
+	void SetType(string type);
+	void SetOwner(Player* owner);
+
 	//player 현재 들어 와 있는 상태, 나가 있는 상태
 	bool IsOnPlayer(Player player);
 	string getType();
 
-
+	
 	//player '지금' (들어온) 나간 상태
-	virtual void OutPlayer() = 0;
-	virtual void EnterPlayer(Player player) = 0;
+	void OutPlayer();
+	void EnterPlayer(Player player);
 
 
 };

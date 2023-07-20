@@ -3,6 +3,11 @@
 
 
 
+City::City(TileInfo tile) 
+	: Tile(tile.cost ,tile.name , tile.type )
+{
+}
+
 City::City(int cost, string name, string type)
 {
 
@@ -77,12 +82,41 @@ int City::VisitCost()
 	}
 }
 
+vector<Player> City::GetPlayers()
+{
+	return onPlayers;
+}
+
+
+
+
+Player* City::GetOwner()
+{
+
+	return cityState.tile.owner;
+}
+
+int City::GetCost()
+{
+	return cityState.tile.cost;
+}
+
+string City::GetName()
+{
+	return cityState.tile.name;
+}
+
 
 
 void City::VisitAnother(Player player)
 {
 
 	int money = VisitCost();
+
+	if(cityState.tile.owner == nullptr)
+	{
+		return;
+	}
 
 	if(player.playerState.money < money )
 	{
@@ -106,21 +140,59 @@ Player City::AnotherPlayerBuy(Player player, int buildType)
 {
 	Player preOwner = *cityState.tile.owner;
 
+
+
+
 	return preOwner;
+}
+
+bool City::IsAnotherBuy(Player player)
+{
+	if( (int)(SumBuildCost() * 1.2) <= player.playerState.money)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+int City::SumBuildCost()
+{
+
+	if (cityState.building == 3) {
+
+		return (int)(cityState.tile.cost * 1.6);
+	}
+	else if (cityState.building == 2)
+	{
+		return (int)(cityState.tile.cost * 1.4);
+	}
+	else if (cityState.building == 1)
+	{
+		return (int)(cityState.tile.cost * 1.2);
+	}
+	else {
+
+		return cityState.tile.cost;
+	}
 }
 
 
 void City::EnterPlayer(Player player)
 {
 	onPlayers.push_back(player);
+
+	if( player != *GetOwner() )
+	{
+		VisitAnother(player);
+		//값 처리 주인이 없을 때도 처리 했음
+	}
 }
 
-bool City::OutPlayer(Player player)
+void City::OutPlayer()
 {
-	
-	if( onPlayers.empty() )
-		
 }
+
 
 City::CityInfo::CityInfo()
 {
