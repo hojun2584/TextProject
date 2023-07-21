@@ -1,5 +1,5 @@
 #include "Tile.h"
-
+#include "Player.h"
 
 Tile::Tile()
 {
@@ -8,7 +8,9 @@ Tile::Tile()
 Tile::Tile(int cost, string name, string type)
 {
 
-
+	tileInfo.cost = cost;
+	tileInfo.name = name;
+	tileInfo.type = type;
 
 }
 
@@ -70,14 +72,26 @@ string Tile::getType()
 	return string();
 }
 
-void Tile::OutPlayer()
+
+int Tile::BuyTile(Player& player)
 {
+	return 0;
+}
+
+void Tile::OutPlayer(Player player)
+{
+
+	auto iter = find(onPlayers.begin(), onPlayers.end(), player);
+	if(iter != onPlayers.end() )
+	{
+		onPlayers.erase(iter);
+	};
+
 }
 
 void Tile::EnterPlayer(Player player)
 {
 	onPlayers.push_back(player);
-
 }
 
 

@@ -7,17 +7,35 @@
 using namespace std;
 
 
-vector<Tile> GetFileData(string fileName)
+vector<Tile*> GetFileData(string fileName)
 {
 	
 	ifstream file(fileName);
 	vector<vector<string>> data;
-	vector<Tile> result;
+	vector<Tile*> result;
 	vector<string> row;
 	string value;
-	Tile tile;
-	int count;
 	string line;
+	string name;
+	string type;
+	int count;
+	int cost = 0;
+
+	//City* city = dynamic_cast<City*>(tile);
+
+	//if (city) {
+	//	// city is a valid pointer to a City object
+	//	city->someFunction();
+	//}
+	//else {
+	//	// tile does not actually point to a City object
+	//}
+
+	City* city = new City(10, "20", "30");
+	
+	Tile* tile = city;
+
+
 	while (getline(file, line)) {
 		row.clear();
 		value.clear();
@@ -26,73 +44,131 @@ vector<Tile> GetFileData(string fileName)
 		while (getline(ss, value, ',')) {
 			if(count == 0 )
 			{	
-				tile.SetCost( stoi(value) );
+				cost = stoi(value);
 			}
 			else if(count == 2 )
 			{
-				tile.SetName(value);
+				name = value;
+
 			}
 			else if(count == 3 )
 			{
-				tile.SetType(value);
+				type = value;
 				count = 0;
+
+				result.push_back(new Tile(cost,name,type));
+				if(type == "City")
+				{
+					//result.push_back(new City(10,"",""));
+				}
+				else if( type == "event" )
+				{
+					//TODO_List event class 구현
+					//result.push_back(new Luck?());
+				}
+				else if ( type == "travel") {
+
+					//TODO_LIST travel class 구현
+					//result.push_back(new Travel() );
+				}
+
+
 				continue;
 			}
 			count++;
 		}
-		result.push_back(tile);
+
+		
 	}
 
-	
-
-
 	return result;
-
 }
+ 
+
+int RollDiCE() {
+
+	srand(time(0));
+	return rand() % 6 + 1;
+	
+}
+
+void NextPlayer(vector<Player*> &players , vector<Player*>::iterator &currentPlayers) {
+
+	if (currentPlayers + 1 != players.end())
+	{
+		currentPlayers++;
+	}
+	else {
+		currentPlayers = players.begin();
+	}
+};
+
 
 int main()
 {
 	string filename = "city.csv";
 	PrintInfo printManager;
-	vector<Tile> landList;
+	vector<Tile*> landList;
 	Player* myPlayer;
-
 	int maxPlayers;
-
+	int temp;
+	int position;
+	int dice;
 
 	vector<Player*> players;
-	vector<Player*>::iterator currentPlayers = players.begin();
+	vector<Player*>::iterator currentPlayers;
 	
 	landList = GetFileData(filename);
 
 	
-
 	printManager.InitActivity();
 	printManager.IntroActivity();
-
 	
 	cin >> maxPlayers;
-	
+
+	// 입력 받은 수 만큼 플레이어 추가 및 첫번째 타일에 배치
 	for(int i = 0 ; i < maxPlayers ; i++)
 	{
-	
 		myPlayer = new Player( to_string(i+1) );
 		players.push_back( myPlayer );
-		landList.begin()->onPlayers.push_back( *myPlayer );
-
+		(* landList.begin() )->EnterPlayer(*myPlayer);
 	}
-
-	int temp = 0;
-	int phase = 0;
-
+	
+	currentPlayers = players.begin();
 
 	while (true)
 	{	
 		printManager.LandActivity( players , landList);
+		printManager.PrintPlayerInfo( *(*currentPlayers) );
+		printManager.PrintDice(*(*currentPlayers));
 		cin >> temp;
 
+		dice = RollDiCE();
+		cout << dice;
+		cin >> temp;
+
+		position = (*currentPlayers)->GetPosition() + dice;
+		if( position < landList.size() )
+		{
+			(landList[(*currentPlayers)->GetPosition()])->OutPlayer( *(*(currentPlayers)) );
+			(landList[position])->EnterPlayer( *(*currentPlayers) );
+			(*(currentPlayers))->SetPosition(position);
+		}
+		else
+		{
+			position -= landList.size();
+			(landList[(*currentPlayers)->GetPosition()])->OutPlayer(*(*(currentPlayers)));
+			(landList[position])->EnterPlayer(*(*currentPlayers));
+			(*(currentPlayers))->SetPosition(position);
+		}
+		if((landList[position])->getType() == "City")
+		{
+			
+		}
+		
+
+
+		NextPlayer(players,currentPlayers);
 	}
-
-
 
 }

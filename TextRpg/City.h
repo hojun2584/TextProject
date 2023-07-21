@@ -1,9 +1,9 @@
 #pragma once
+#include <algorithm>
 #include "Tile.h"
 #include "Player.h"
-#include <algorithm>
 
-class City : Tile
+class City : public Tile
 {
 
 	struct CityInfo
@@ -11,7 +11,6 @@ class City : Tile
 		// building =     1 == 별장 , 2 == 호텔, 3 == 빌딩
 		int building = -1;
 		TileInfo tile;
-		
 
 		CityInfo();
 		CityInfo(TileInfo tile) {
@@ -32,12 +31,10 @@ public:
 
 	bool IsBuild(Player player);
 	bool IsOwner();
-
-	int BuyLand(Player player);
-	int BuyBila(Player player);
-	int BuyHotel(Player player);
-	int BuyBuilding(Player player);
-
+	
+	int BuyBila(Player &player);
+	int BuyHotel(Player &player);
+	int BuyBuilding(Player &player);
 
 	int VisitCost();
 	vector<Player> GetPlayers();
@@ -54,6 +51,10 @@ public:
 
 	void EnterPlayer(Player player);
 	void OutPlayer();
+
+	
+
+	int BuyTile(Player& player);
 
 };
 

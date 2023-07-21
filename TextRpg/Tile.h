@@ -1,9 +1,11 @@
 #pragma once
-#include "Player.h"
 #include <string>
 #include <vector>
-
 using namespace std;
+
+class Player;
+
+
 
 class Tile
 {
@@ -13,10 +15,10 @@ public:
 	struct TileInfo
 	{
 
-		int cost ;
-		Player *owner ;
-		string name ;
-		string type ;
+		int cost;
+		Player* owner;
+		string name;
+		string type;
 		TileInfo() 
 		{
 			cost = 30;
@@ -58,9 +60,10 @@ public:
 	string getType();
 
 	
-	//player '지금' (들어온) 나간 상태
-	void OutPlayer();
-	void EnterPlayer(Player player);
+	
+	int BuyTile(Player& player);
+	void OutPlayer(Player player);
+	virtual void EnterPlayer(Player player);
 
 
 };

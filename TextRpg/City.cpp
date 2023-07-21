@@ -37,26 +37,28 @@ bool City::IsOwner()
 	return true;
 }
 
-int City::BuyLand(Player player)
+int City::BuyTile(Player &player)
 {
 	cityState.tile.owner = &player;
 	cityState.building = 0;
+	player.playerState.haveLand.push_back(this);
+
 	return (int)(cityState.tile.cost);
 }
 
-int City::BuyBila(Player player)
+int City::BuyBila(Player &player)
 {
 	cityState.building = 1;
 	return (int)(cityState.tile.cost*0.2);
 }
 
-int City::BuyHotel(Player player)
+int City::BuyHotel(Player &player)
 {
 	cityState.building = 2;
 	return (int)(cityState.tile.cost*0.4);
 }
 
-int City::BuyBuilding(Player player)
+int City::BuyBuilding(Player &player)
 {
 	cityState.building = 3;
 	return (int)(cityState.tile.cost*0.6);
