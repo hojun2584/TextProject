@@ -57,7 +57,6 @@ public:
 
 	//player 현재 들어 와 있는 상태, 나가 있는 상태
 	bool IsOnPlayer(Player player);
-	string getType();
 
 	
 	

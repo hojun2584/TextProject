@@ -48,8 +48,8 @@ public:
 	string GetName();
 	int GetMoney();
 	
-	void SellTile();
-	
+	void SellTile(Tile* tile);
+
 	void DepositMoney(int money);
 	void WithdrowMoney(int money);
 	int GetPosition();

@@ -3,6 +3,7 @@
 
 Tile::Tile()
 {
+
 }
 
 Tile::Tile(int cost, string name, string type)
@@ -65,11 +66,6 @@ bool Tile::IsOnPlayer(Player player)
 		return false;
 	
 	return true;
-}
-
-string Tile::getType()
-{
-	return string();
 }
 
 

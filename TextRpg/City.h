@@ -22,6 +22,11 @@ class City : public Tile
 		
 	};
 
+	int BuyTile(Player& player);
+	int BuyBuilding();
+	int BuyHotel();
+	int BuyBila();
+
 public:
 
 	CityInfo cityState = tileInfo;
@@ -29,13 +34,12 @@ public:
 	City(TileInfo tile);
 	City(int cost, string name, string type);
 
+
+	int GetBuilding();
+	void SetBuilding(int building);
 	bool IsBuild(Player player);
 	bool IsOwner();
 	
-	int BuyBila(Player &player);
-	int BuyHotel(Player &player);
-	int BuyBuilding(Player &player);
-
 	int VisitCost();
 	vector<Player> GetPlayers();
 	Player* GetOwner();
@@ -43,7 +47,7 @@ public:
 	int GetCost();
 
 
-	void VisitAnother(Player player);
+	void VisitAnother(Player* player);
 	Player AnotherPlayerBuy(Player player,int buildType);
 	
 	bool IsAnotherBuy(Player player);
@@ -53,8 +57,8 @@ public:
 	void OutPlayer();
 
 	
-
-	int BuyTile(Player& player);
+	void BuyCity(Player* player, int target);
+	void SetOwner(Player* player);
 
 };
 

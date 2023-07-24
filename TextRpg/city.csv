@@ -1,4 +1,4 @@
--1,0,START,event
+-1,0,START,city
 30,0,타이베이,city
 -1,0,황금열쇠,event
 30,0,베이징,city
@@ -8,7 +8,7 @@
 -1,0,황금열쇠,event
 30,0,카이로,city
 30,0,이스탄불,city
--1,0,무인도,city
+-1,0,무인도,event
 50,0,아테네,city
 -1,0,황금열쇠,event
 50,0,코펜,city
@@ -36,4 +36,5 @@
 70,0,오사카,city
 -1,0,황금열쇠,event
 70,0,런던,city
+70,0,부산,city
 70,0,서울,city

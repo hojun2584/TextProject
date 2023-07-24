@@ -21,23 +21,21 @@ int Player::GetMoney()
 	return playerState.money;
 }
 
-void Player::SellTile()
+void Player::SellTile(Tile* tile)
 {
-	//City* city = dynamic_cast<City*>(tile);
 
-	//if (city) {
-	//	// city is a valid pointer to a City object
-	//	city->someFunction();
-	//}
-	//else {
-	//	// tile does not actually point to a City object
-	//}
+	City *city = dynamic_cast<City*>( tile );
 
+	auto iter = find(playerState.haveLand.begin(), playerState.haveLand.end(), tile);
 
-	// TODO_LIST city class 다운 캐스트 할 것
-	// 업캐스트 한 후 owner 초기 화 및 have land에서 값 erase()
-	City *city = dynamic_cast<City*>( playerState.haveLand.back() );
-
+	if( city->GetBuilding() == 0)
+	{
+		city->SetBuilding(-1);
+		city->SetOwner(nullptr);
+		DepositMoney( (int)(city->GetCost() * 0.8) );
+		playerState.haveLand.erase(iter);
+	}
+	
 }
 
 
@@ -49,7 +47,7 @@ void Player::DepositMoney(int money)
 
 void Player::WithdrowMoney(int money)
 {
-	playerState.money -= money;
+	playerState.money = playerState.money - money;
 }
 
 int Player::GetPosition()
